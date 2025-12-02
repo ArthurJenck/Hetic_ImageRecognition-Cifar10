@@ -42,7 +42,7 @@ model.compile(optimizer='adam',
               loss='sparse_categorical_crossentropy',
               metrics=['accuracy'])
 
-history = model.fit(x_train, y_train, epochs=50,
+history = model.fit(x_train, y_train, epochs=25,
                     validation_data=(x_test, y_test))
 
 test_loss, test_acc = model.evaluate(x_test, y_test, verbose=2)
