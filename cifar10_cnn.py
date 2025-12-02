@@ -72,3 +72,5 @@ plt.ylabel('Vrai')
 plt.title("Matrice de confusion CIFAR-10")
 plt.show()
 
+model.save('cifar10_cnn_model.keras')
+
