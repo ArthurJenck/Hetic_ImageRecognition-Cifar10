@@ -2,6 +2,8 @@ import tensorflow as tf
 from keras import datasets, layers, models
 import matplotlib.pyplot as plt
 import numpy as np
+from sklearn.metrics import confusion_matrix
+import seaborn as sns
 
 (x_train, y_train), (x_test, y_test) = datasets.cifar10.load_data()
 
@@ -40,4 +42,33 @@ model.compile(optimizer='adam',
 
 history = model.fit(x_train, y_train, epochs=10,
                     validation_data=(x_test, y_test))
+
+test_loss, test_acc = model.evaluate(x_test, y_test, verbose=2)
+print(f"Précision sur le jeu de test : {test_acc*100:.2f}%")
+
+plt.figure(figsize=(12,4))
+plt.subplot(1,2,1)
+plt.plot(history.history['loss'], label='Loss train')
+plt.plot(history.history['val_loss'], label='Loss val')
+plt.xlabel("Époque")
+plt.ylabel("Loss")
+plt.legend()
+
+plt.subplot(1,2,2)
+plt.plot(history.history['accuracy'], label='Accuracy train')
+plt.plot(history.history['val_accuracy'], label='Accuracy val')
+plt.xlabel("Époque")
+plt.ylabel("Accuracy")
+plt.legend()
+plt.show()
+
+y_pred = np.argmax(model.predict(x_test), axis=1)
+cm = confusion_matrix(y_test, y_pred)
+
+plt.figure(figsize=(10,8))
+sns.heatmap(cm, annot=True, fmt='d', xticklabels=class_names, yticklabels=class_names)
+plt.xlabel('Prédit')
+plt.ylabel('Vrai')
+plt.title("Matrice de confusion CIFAR-10")
+plt.show()
 
