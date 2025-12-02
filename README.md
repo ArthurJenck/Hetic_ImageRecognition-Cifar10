@@ -38,11 +38,13 @@ Le script effectue :
 
 1. Chargement et visualisation des données
 2. Construction du modèle
-3. Entraînement sur 10 epochs
+3. Entraînement sur 50 epochs
 4. Évaluation des performances
 5. Génération des courbes d'apprentissage
 6. Affichage de la matrice de confusion
 7. Sauvegarde du modèle entraîné
+
+Précision de 75% pour 50 epochs
 
 ## Modèle sauvegardé
 

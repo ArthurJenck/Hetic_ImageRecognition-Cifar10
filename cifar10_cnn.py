@@ -30,7 +30,9 @@ model = models.Sequential([
     layers.MaxPooling2D((2,2)),
     layers.Conv2D(64, (3,3), activation='relu'),
     layers.Flatten(),
+    layers.Dropout(0.5),
     layers.Dense(64, activation='relu'),
+    layers.Dropout(0.5),
     layers.Dense(10, activation='softmax')
 ])
 
@@ -40,7 +42,7 @@ model.compile(optimizer='adam',
               loss='sparse_categorical_crossentropy',
               metrics=['accuracy'])
 
-history = model.fit(x_train, y_train, epochs=10,
+history = model.fit(x_train, y_train, epochs=50,
                     validation_data=(x_test, y_test))
 
 test_loss, test_acc = model.evaluate(x_test, y_test, verbose=2)
