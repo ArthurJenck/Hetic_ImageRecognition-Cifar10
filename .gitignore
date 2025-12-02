@@ -205,3 +205,12 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# ML Models and outputs
+*.keras
+*.h5
+*.png
+*.jpg
+*.jpeg
+cifar-10-batches-py/
+cifar-100-python/
