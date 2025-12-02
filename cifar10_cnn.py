@@ -20,3 +20,21 @@ plt.show()
 
 x_train, x_test = x_train / 255.0, x_test / 255.0
 
+model = models.Sequential([
+    layers.Input(shape=(32,32,3)),
+    layers.Conv2D(32, (3,3), activation='relu'),
+    layers.MaxPooling2D((2,2)),
+    layers.Conv2D(64, (3,3), activation='relu'),
+    layers.MaxPooling2D((2,2)),
+    layers.Conv2D(64, (3,3), activation='relu'),
+    layers.Flatten(),
+    layers.Dense(64, activation='relu'),
+    layers.Dense(10, activation='softmax')
+])
+
+model.summary()
+
+model.compile(optimizer='adam',
+              loss='sparse_categorical_crossentropy',
+              metrics=['accuracy'])
+
